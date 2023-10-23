@@ -1,10 +1,9 @@
 #include <GL/glut.h>
-#include <pthread.h>
 void display() {
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(0.0, 0.0, 0.5);
     glRecti(0, 0, 10, 10);
-    glRotated(15, 0, 0, 0);
+    glRotated(15, 0, 0, 1);
     glRecti(20, 20, 30, 30);
     glFlush();
 }
