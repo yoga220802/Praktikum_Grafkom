@@ -5,7 +5,7 @@ void display (void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glColor3f(0.0, 0.850, 1);
     glRotated(35, 1, 1, 1);
-    glutWireCube(2);
+    glutWireTorus(1, 2, 25, 25);
     glFlush();
 }
 
