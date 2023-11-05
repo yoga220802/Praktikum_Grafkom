@@ -1,0 +1,1 @@
+## 1. Buatlah program dengan OpenGL untuk menampilkan objek 3D dengan metoda 3 daftar yaitu (1) titik (2) normal (3) permukaan: <br> a) Prisma <br>b) Antiprisma <br>c) Tetrahedron <br>d) Octahedron <br>e) Dodecahedron <br>f) Icosahedron

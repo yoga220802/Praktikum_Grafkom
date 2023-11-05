@@ -1,0 +1,1 @@
+# 2. Modifikasi program sebelumnya dengan mengubah warna masing-masing polihendra dengan warna yang berbeda

@@ -320,7 +320,7 @@ void inisialisasi(void) {
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-    glutCreateWindow("Grafika Komputer 3 Dimensi");
+    glutCreateWindow("2206050 - Yoga Agustiansyah");
     glutDisplayFunc(display);
     inisialisasi();
     glutMainLoop();
