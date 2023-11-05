@@ -12,6 +12,12 @@ Selain itu, Pemodelan 3D dengan Jaring Poligon juga mencakup konsep materi (mate
 Dalam praktikum ini, kita akan memahami konsep dasar Pemodelan 3D dengan Jaring Poligon, menggambar objek 3D sederhana, dan memahami bagaimana materi dan pencahayaan dapat memengaruhi tampilan objek. Pengetahuan ini adalah fondasi penting dalam dunia grafik komputer dan berperan dalam pembuatan animasi, permainan komputer, simulasi, dan banyak aplikasi lainnya yang memerlukan representasi 3D yang akurat dan realistis.
 
 ## Pembahasan
+### 1. Buatlah program dengan OpenGL untuk menampilkan objek 3D dengan metoda 3 daftar yaitu (1) titik (2) normal (3) permukaan: <br> a) Prisma <br>b) Antiprisma <br>c) Tetrahedron <br>d) Octahedron <br>e) Dodecahedron <br>f) Icosahedron
+[Pengerjaan Soal 1](https://github.com/yoga220802/Praktikum_Grafkom/tree/main/Pertemuan%206/tasks/Soal%201)
+
+### 2. Modifikasi program sebelumnya dengan mengubah warna masing-masing polihendra dengan warna yang berbeda
+[Pengerjaan Soal 2](https://github.com/yoga220802/Praktikum_Grafkom/tree/main/Pertemuan%206/tasks/Soal%202)
+
 
 ## Kesimpulan
 Dalam praktikum ini, kita telah mempelajari dasar-dasar pemodelan 3D dengan jaring poligon menggunakan OpenGL dan GLUT. kita telah menjelajahi konsep dasar pemodelan 3D dengan bentuk geometris dasar seperti prisma segi lima, antiprisma segi lima, tetrahedron, octahedron, dodecahedron, dan icosahedron.
