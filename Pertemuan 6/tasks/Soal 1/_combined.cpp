@@ -200,7 +200,6 @@ void pentagonAntiPrism(void)
     glVertex3f(-3.0f, -4.0f, 2.0f);
     glEnd();
 
-    glutPostRedisplay();
 }
 
 void gambar3D(void) {
@@ -264,7 +263,7 @@ void display(void) {
     glutSwapBuffers();
 }
 
-void inisialisasi(void) {
+void init(void) {
     int w = 800, h = 600;
     glShadeModel(GL_FLAT);
     glClearColor(1.0, 1.0, 1.0, 0.0);
@@ -284,9 +283,9 @@ void inisialisasi(void) {
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-    glutCreateWindow("Grafika Komputer 3 Dimensi");
+    glutCreateWindow("2206050 - Yoga Agustiansyah");
     glutDisplayFunc(display);
-    inisialisasi();
+    init();
     glutMainLoop();
     return 0;
 }

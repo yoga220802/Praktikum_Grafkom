@@ -3,7 +3,7 @@
 GLfloat light_diffuse[] = {0.215f, 0.784f, 0.294f, 1.0f};
 GLfloat light_position[] = {1.0, 1.0, 1.0, 0.0};
 
-void gambar3D(void)
+void pentagonAntiPrism(void)
 {
     glRotatef(1.0, 0.5, 1.0, 0.0);
 
@@ -118,7 +118,7 @@ void gambar3D(void)
 void display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    gambar3D();
+    pentagonAntiPrism();
     glutSwapBuffers();
 }
 

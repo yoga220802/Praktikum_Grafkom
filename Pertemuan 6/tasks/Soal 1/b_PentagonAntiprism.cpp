@@ -3,7 +3,7 @@
 GLfloat light_diffuse[] = {0.0, 0.850, 1.0, 1.0};
 GLfloat light_position[] = {1.0, 1.0, 1.0, 0.0};
 
-void pentagonPrism(void)
+void pentagonAntiPrism(void)
 {
     glRotatef(1.0, 0.5, 1.0, 0.0);
 
@@ -118,7 +118,7 @@ void pentagonPrism(void)
 void display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    pentagonPrism();
+    pentagonAntiPrism();
     glutSwapBuffers();
 }
 

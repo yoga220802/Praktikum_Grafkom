@@ -3,7 +3,7 @@
 GLfloat light_diffuse[] = {1.0, 0.0, 0.0, 1.0};
 GLfloat light_position[] = {1.0, 1.0, 1.0, 0.0};
 
-void Gambar3D(void)
+void octaHedron(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -35,11 +35,11 @@ void Gambar3D(void)
 void Display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    Gambar3D();
+    octaHedron();
     glutSwapBuffers();
 }
 
-void Inisial(void)
+void init(void)
 {
     int w = 800, h = 600;
     glShadeModel(GL_FLAT);
@@ -63,7 +63,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutCreateWindow("2206050 - Yoga Agustiansyah");
     glutDisplayFunc(Display);
-    Inisial();
+    init();
     glutMainLoop();
     return 0;
 }

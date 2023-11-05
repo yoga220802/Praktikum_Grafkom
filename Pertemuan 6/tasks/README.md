@@ -14,3 +14,8 @@ Dalam praktikum ini, kita akan memahami konsep dasar Pemodelan 3D dengan Jaring 
 ## Pembahasan
 
 ## Kesimpulan
+Dalam praktikum ini, kita telah mempelajari dasar-dasar pemodelan 3D dengan jaring poligon menggunakan OpenGL dan GLUT. kita telah menjelajahi konsep dasar pemodelan 3D dengan bentuk geometris dasar seperti prisma segi lima, antiprisma segi lima, tetrahedron, octahedron, dodecahedron, dan icosahedron.
+
+Selama praktikum, kita telah mempelajari konsep pencahayaan dan material yang memengaruhi tampilan objek 3D. kita juga telah melihat bagaimana menggambar objek 3D dengan penggunaan glBegin dan glEnd untuk mendefinisikan poligon dan permukaan. Modifikasi warna objek telah kita lakukan untuk memberikan tampilan yang lebih menarik.
+
+Dengan menyelesaikan praktikum ini, kita memiliki pemahaman dasar tentang pemodelan 3D dan penggunaan OpenGL dalam pengembangan aplikasi grafis. kita siap untuk menjelajahi konsep yang lebih canggih dalam dunia grafik komputer dan membangun aplikasi grafis yang lebih kompleks di masa depan.
