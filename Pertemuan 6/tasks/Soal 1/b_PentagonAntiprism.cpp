@@ -124,7 +124,7 @@ void display(void)
 
 void init(void)
 {
-    glClearColor(1, 1, 1, 1);
+    glClearColor(0, 0, 0, 1);
     // PENCAHAYAAN
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);

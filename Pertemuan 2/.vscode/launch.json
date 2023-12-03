@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/media/yoga/home/KULI/PrakGrafKom/Pertemuan 6/tasks",
-      "program": "/media/yoga/home/KULI/PrakGrafKom/Pertemuan 6/tasks/build/Debug/outDebug",
+      "cwd": "/media/yoga/home/KULI/PrakGrafKom/Pertemuan 2",
+      "program": "/media/yoga/home/KULI/PrakGrafKom/Pertemuan 2/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
