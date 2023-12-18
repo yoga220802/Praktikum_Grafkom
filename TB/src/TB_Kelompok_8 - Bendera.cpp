@@ -32,6 +32,8 @@ void objectManipulation()
     const float scaleSpeed = 0.001;
     const float translateSpeed = 0.01;
     const float rotateSpeed = 0.5;
+
+    // scale
     if (isKeyPressed('w'))
     {
         scaleValue += scaleSpeed; // perbesar
@@ -41,6 +43,7 @@ void objectManipulation()
         scaleValue -= scaleSpeed; // perkecil
     }
 
+    // translate
     if (isKeyPressed('d') && translateValue > -10)
     {
         translateValue -= translateSpeed;
@@ -50,6 +53,7 @@ void objectManipulation()
         translateValue += translateSpeed;
     }
 
+    // rotate
     if (isKeyPressed('l'))
     {
         rotateValue += rotateSpeed;
@@ -59,6 +63,7 @@ void objectManipulation()
         rotateValue -= rotateSpeed;
     }
 
+    // reset
     if (isKeyPressed('r'))
     {
         scaleValue = 1.0;
@@ -80,6 +85,7 @@ struct vec3
     float x, y, z;
 };
 
+// titik koordinat yang akan digunakan
 class dots
 {
 private:
@@ -168,6 +174,7 @@ public:
 dots front;
 dots rear;
 
+// pengaturan normal
 vec3 normalCalculate(GLfloat dots1[3], GLfloat dots2[3], GLfloat dots3[3])
 {
     vec3 U = {dots2[0] - dots1[0], dots2[1] - dots1[1], dots2[3] - dots1[3]};
@@ -196,6 +203,7 @@ void setNormalizedNormal(GLfloat dots1[3], GLfloat dots2[3], GLfloat dots3[3])
     glNormal3f(normalized_normal.x, normalized_normal.y, normalized_normal.z);
 }
 
+// Pembuatan sisi-sisi
 void objectSides(GLfloat p1[3], GLfloat p2[3], GLfloat p3[3], GLfloat p4[3])
 {
     setNormalizedNormal(p1, p2, p3);
@@ -226,7 +234,8 @@ void sidesDrawer(int endPoint, GLfloat front_points[][3], GLfloat rear_points[][
     }
 }
 
-void extras()
+// lantai
+void floor()
 {
     glColor3f(0.0 / 255.0, 145.0 / 255.0, 23.0 / 255.0); // rgb(0, 154, 23)
 
@@ -238,6 +247,7 @@ void extras()
     glEnd();
 }
 
+// awan
 void drawCloud(float cloudRotation, float cloudPositionX, float cloudPositionY, float cloudPositionZ = -50)
 {
     glPushMatrix();
@@ -280,6 +290,7 @@ void drawCloud(float cloudRotation, float cloudPositionX, float cloudPositionY, 
     glPopMatrix();
 }
 
+// Teks Penjelasan
 void renderText(float x, float y, void *font, const char *string)
 {
     glRasterPos2f(x, y);
@@ -291,6 +302,7 @@ void renderText(float x, float y, void *font, const char *string)
 }
 
 // DRAW OBJECT
+// Tiang Bendera
 void drawTiangBendera()
 {
     front.setZTiang(0.5, 2.5, 4);
@@ -316,6 +328,7 @@ void drawTiangBendera()
     glEnd();
 }
 
+// Bendera
 void drawBendera()
 {
     front.setZBendera(0.25, 0.0, 0.5);
@@ -346,6 +359,7 @@ void drawBendera()
     glPopMatrix();
 }
 
+// Pohon
 void drawPohon(GLfloat positionX, GLfloat positionZ, GLfloat height)
 {
     front.setZPohon(12, 13.5);
@@ -398,7 +412,8 @@ void display()
     renderText(-18.0f, 16.0f, GLUT_BITMAP_HELVETICA_12, text3);
     renderText(-18.0f, 14.0f, GLUT_BITMAP_HELVETICA_12, text4);
 
-    extras();
+// lantai
+    floor();
     drawCloud(cloudRotation + 100, -10, 15);
     drawCloud(-cloudRotation - 50, 0, 20, -45);
     drawCloud(-cloudRotation - 100, -5, 10, 70);
