@@ -40,6 +40,7 @@ bool isKeyPressed(char key)
 // mengatur manipulasi objek, baik scaling, translating, dan rotating
 void objectManipulation()
 {
+    // konstanta seberapa besar perubahan objek
     const float scaleSpeed = 0.001;
     const float translateSpeed = 0.01;
     const float rotateSpeed = 0.5;
@@ -67,9 +68,9 @@ void objectManipulation()
     // rotate
     if (isKeyPressed('l'))
     {
-        rotateValue += rotateSpeed;
+        rotateValue += rotateSpeed; // rotasi ke kanan
     }
-    else if (isKeyPressed('n'))
+    else if (isKeyPressed('n')) // rotasi ke kiri
     {
         rotateValue -= rotateSpeed;
     }
@@ -193,6 +194,8 @@ public:
         }
     }
 };
+
+// membuat objek dari class dots untuk bagian depan dan bagian belakang
 dots front;
 dots rear;
 
@@ -269,7 +272,8 @@ void floor()
     glEnd();
 }
 
-// awan
+// awan 
+// awan berotasi terus menerus
 void drawCloud(float cloudRotation, float cloudPositionX, float cloudPositionY, float cloudPositionZ = -50)
 {
     glPushMatrix();
@@ -327,15 +331,22 @@ void renderText(float x, float y, void *font, const char *string)
 // Tiang Bendera
 void drawTiangBendera()
 {
+    // mengatur koordinat z untuk sisi depan
     front.setZTiang(0.5, 2.5, 4);
+
+    // mengatur koordinat z untuk sisi belakang
     rear.setZTiang(-0.5, -2.5, -4);
 
+// mengatur warna tiang
     glColor3f(136.0 / 255.0, 141.0 / 255.0, 143.0 / 255.0); // rgb(62, 63, 63)
 
     glBegin(GL_QUADS);
+    // mengatur normal tiang bendera bagian atas
     setNormalizedNormal(front.tiang.part1[1], front.tiang.part1[2], front.tiang.part1[3]);
+    // membuat bagian depan dan belakang tiang bendera
     frontAndRear_quads(front.tiang.part1);
     frontAndRear_quads(rear.tiang.part1);
+    // membuat sisi sisi samping
     sidesDrawer(4, front.tiang.part1, rear.tiang.part1);
 
     setNormalizedNormal(front.tiang.part2[1], front.tiang.part2[2], front.tiang.part2[3]);
@@ -353,7 +364,9 @@ void drawTiangBendera()
 // Bendera
 void drawBendera()
 {
+    // mengatur titik koordinat z bagian depan bendera
     front.setZBendera(0.25, 0.0, 0.5);
+    // mengatur titik koordinat z bagian belakang bendera
     rear.setZBendera(-0.25, 0.5, 0.0);
 
     glPushMatrix();
