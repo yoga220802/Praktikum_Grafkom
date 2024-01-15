@@ -1,3 +1,4 @@
+// IMPORT LIBRARY
 #include <GL/glut.h>
 #include <iostream>
 #include <cmath>
@@ -5,28 +6,38 @@
 
 using namespace std;
 
-vector<bool> keyStatus(256, false); // Untuk menampung status tombol (256 tombol keyboard)
+// Untuk menampung status tombol (Maksimal 256 tombol keyboard)
+vector<bool> keyStatus(256, false);
 
+// Pencahayaan diffuse adalah cahaya yang memantul ke segala arah setelah menabrak permukaan objek
 GLfloat light_diffuse1[] = {1, 1, 1, 0.5};
 GLfloat light_position[] = {0.0f, 50.0f, -75.0f, 1.0f};
 
-float scaleValue = 1.0, translateValue = 0.0, rotateValue = 0.0, cloudRotation = 0.0, eyePositionX = 0.0, eyePositionY = 20.0, eyePositionZ = 50.0;
+// nilai perubahan untuk setiap manipulasi objek
+float scaleValue = 1.0,
+translateValue = 0.0,
+rotateValue = 0.0,
+cloudRotation = 0.0;
 
+// mengatur status tombol yang ditekan
 void keyboard(unsigned char key, int x, int y)
 {
     keyStatus[key] = true;
 }
 
+// mengatur status tombol yang dilepas dalam struktur data
 void keyboardUp(unsigned char key, int x, int y)
 {
     keyStatus[key] = false;
 }
 
+// mengembalikan nilai boolean (true jika tombol sedang ditekan, false jika tidak)
 bool isKeyPressed(char key)
 {
     return keyStatus[key];
 }
 
+// mengatur manipulasi objek, baik scaling, translating, dan rotating
 void objectManipulation()
 {
     const float scaleSpeed = 0.001;
@@ -80,16 +91,21 @@ void objectManipulation()
     glutPostRedisplay();
 }
 
+// struktur vektor untuk koordinat 3D
 struct vec3
 {
     float x, y, z;
 };
 
-// titik koordinat yang akan digunakan
+// class sebagai blueprint 
+// menyimpan titik koordinat yang akan digunakan untuk membuat objek
 class dots
 {
 private:
+    // jumlah titik untuk setiap objek
     int numOfPoint[3] = {5, 10, 20};
+    
+    // objek tiang terdiri dari 3 bagian
     struct Tiang
     {
         GLfloat part1[5][3];
@@ -97,12 +113,14 @@ private:
         GLfloat part3[5][3];
     };
 
+    // objek pohon terdiri dari 2 bagian
     struct Pohon
     {
         GLfloat part1[5][3];
         GLfloat part2[5][3];
     };
 
+    // objek bendera terdiri dari 3 bagian
     struct Bendera
     {
         GLfloat part1[9][3];
@@ -111,22 +129,24 @@ private:
     };
 
 public:
-    // tiang Bendera
+    // titik tiang Bendera dalam bentuk 2 dimensi
     Tiang tiang = {{{}, {-0.5, 20}, {0.5, 20}, {0.5, 0.5}, {-0.5, 0.5}},
                    {{}, {-2.5, 0.5}, {2.5, 0.5}, {2.5, -0.5}, {-2.5, -0.5}},
                    {{}, {-4, -0.5}, {4, -0.5}, {4, -1.5}, {-4, -1.5}}};
 
+    // titik pohon dalam bentuk 2 dimensi
     Pohon pohon = {{{}, {-12, 1.5}, {-10, 1.5}, {-10, -1.5}, {-12, -1.5}},
                    {{}, {-12, 9}, {-10, 9}, {-8.5, 1.5}, {-13.5, 1.5}}};
 
+    // titik Bendera dalam bentuk 2 dimensi
     Bendera bendera = {
         {{}, {0.5, 20.0}, {1.5, 20.0}, {2.0, 20.0}, {3.0, 20.0}, {3.5, 20.0}, {4.5, 20.0}, {5.0, 20.0}, {6.0, 20.0}},
         {{}, {0.5, 18.0}, {1.5, 18.0}, {2.0, 18.0}, {3.0, 18.0}, {3.5, 18.0}, {4.5, 18.0}, {5.0, 18.0}, {6.0, 18.0}},
         {{}, {0.5, 16.0}, {1.5, 16.0}, {2.0, 16.0}, {3.0, 16.0}, {3.5, 16.0}, {4.5, 16.0}, {5.0, 16.0}, {6.0, 16.0}}};
 
     // methods
-    void
-    setZTiang(GLfloat z1, GLfloat z2, GLfloat z3)
+    // method untuk mengatur titik z pada tiang
+    void setZTiang(GLfloat z1, GLfloat z2, GLfloat z3)
     {
         for (int i = 0; i < 5; i++)
         {
@@ -136,6 +156,7 @@ public:
         }
     }
 
+    // method untuk mengatur titik z pada pohon
     void setZPohon(GLfloat z1, GLfloat z2)
     {
         for (int i = 0; i < 5; i++)
@@ -146,6 +167,7 @@ public:
         }
     }
 
+    // method untuk mengatur titik z pada bendera
     void setZBendera(GLfloat z1, GLfloat z2, GLfloat z3)
     {
         for (int i = 0; i < 9; i++)
@@ -185,7 +207,6 @@ vec3 normalCalculate(GLfloat dots1[3], GLfloat dots2[3], GLfloat dots3[3])
         U.x * V.y - U.y * V.x};
     return normal;
 }
-
 vec3 normalize(const vec3 coordinate)
 {
     float divider = sqrt(pow(coordinate.x, 2) + pow(coordinate.y, 2) + pow(coordinate.z, 2));
@@ -195,7 +216,6 @@ vec3 normalize(const vec3 coordinate)
         coordinate.z / divider};
     return newCoordinate;
 }
-
 void setNormalizedNormal(GLfloat dots1[3], GLfloat dots2[3], GLfloat dots3[3])
 {
     vec3 normal = normalCalculate(dots1, dots2, dots3);
@@ -203,7 +223,7 @@ void setNormalizedNormal(GLfloat dots1[3], GLfloat dots2[3], GLfloat dots3[3])
     glNormal3f(normalized_normal.x, normalized_normal.y, normalized_normal.z);
 }
 
-// Pembuatan sisi-sisi
+// fungsi untuk Pembuatan sisi-sisi dari objek
 void objectSides(GLfloat p1[3], GLfloat p2[3], GLfloat p3[3], GLfloat p4[3])
 {
     setNormalizedNormal(p1, p2, p3);
@@ -213,6 +233,7 @@ void objectSides(GLfloat p1[3], GLfloat p2[3], GLfloat p3[3], GLfloat p4[3])
     glVertex3fv(p4);
 }
 
+// function untuk membuat bagian depan atau belakang dari objek 
 void frontAndRear_quads(GLfloat points[5][3])
 {
     setNormalizedNormal(points[1], points[2], points[3]);
@@ -222,6 +243,7 @@ void frontAndRear_quads(GLfloat points[5][3])
     }
 }
 
+// function untuk membuat sisi sisi dari objek secara otomatis
 void sidesDrawer(int endPoint, GLfloat front_points[][3], GLfloat rear_points[][3], bool backToFirst = true)
 {
     for (int i = 1; i < endPoint; i++)
@@ -234,7 +256,7 @@ void sidesDrawer(int endPoint, GLfloat front_points[][3], GLfloat rear_points[][
     }
 }
 
-// lantai
+// membuat lantai 
 void floor()
 {
     glColor3f(0.0 / 255.0, 145.0 / 255.0, 23.0 / 255.0); // rgb(0, 154, 23)
@@ -387,13 +409,20 @@ void drawPohon(GLfloat positionX, GLfloat positionZ, GLfloat height)
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // warna background
     glClearColor(135.0 / 255.0, 206.0 / 255.0, 235.0 / 255.0, 1.0); // rgb(135, 207, 235)
 
+// Pencahayaan specular adalah cahaya yang memantul secara langsung ke arah mata pengamat.
+// Pencahayaan ambient adalah cahaya yang datang dari semua arah dan memantul ke seluruh permukaan objek.
+// Pencahayaan diffuse adalah cahaya yang memantul ke segala arah setelah menabrak permukaan objek
+// shininess mengatur cahaya yang dipantulkan
     GLfloat ambient[] = {0.2f, 0.2f, 0.2f, 1.0f};
     GLfloat diffuse[] = {0.8f, 0.8f, 0.8f, 1.0f};
     GLfloat specular[] = {1.0f, 1.0f, 1.0f, 1.0f};
-    GLfloat shininess[] = {100.0f};
+    GLfloat shininess[] = {10.0f};
 
+    // pengaturan sifat cahaya yang didapat dari tiap objek
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient);
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse);
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
@@ -402,11 +431,13 @@ void display()
     glEnable(GL_COLOR_MATERIAL);
     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
 
+// teks penjelasan
     const char *text1 = "Translation : u (up) / d (down)";
     const char *text2 = "Rotation : l (left) / n (not left a.k.a right)";
     const char *text3 = "Scaling : m (mini) / w (wumbo)";
     const char *text4 = "r for reset all condition";
 
+// merender teks penjelasan
     renderText(-18.0f, 20.0f, GLUT_BITMAP_HELVETICA_12, text1);
     renderText(-18.0f, 18.0f, GLUT_BITMAP_HELVETICA_12, text2);
     renderText(-18.0f, 16.0f, GLUT_BITMAP_HELVETICA_12, text3);
@@ -414,24 +445,30 @@ void display()
 
 // lantai
     floor();
+
+// menggambar beberapa awan
     drawCloud(cloudRotation + 100, -10, 15);
     drawCloud(-cloudRotation - 50, 0, 20, -45);
     drawCloud(-cloudRotation - 100, -5, 10, 70);
     drawCloud(cloudRotation + 50, 10, 17, 50);
     drawCloud(cloudRotation + 50, -7, 10, 10);
 
+// menggambar tiang bendera
     drawTiangBendera();
 
+// menggambar bendera
     drawBendera();
-    glPushMatrix();
-    objectManipulation(); // Memanggil fungsi untuk perubahan skala objek
+
+// menggambar beberapa pohon
     drawPohon(0, 0, 0.5);
     drawPohon(20, 0, 0.0);
     drawPohon(20, -30, 0.7);
     drawPohon(15, -60, 0.3);
     drawPohon(-10, -60, 0.3);
-    // glTranslatef(-10, 0, 10);
     glutSwapBuffers();
+    
+    objectManipulation(); // Memanggil fungsi untuk perubahan objek
+
     // glutPostRedisplay();
 }
 
@@ -451,7 +488,7 @@ void init()
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(eyePositionX, eyePositionY, eyePositionZ, // eyeX, eyeY, eyeZ (Posisi Kamera)
+    gluLookAt(0.0, 20.0, 50.0, // eyeX, eyeY, eyeZ (Posisi Kamera)
               0.0, 5.0, 0.0,                            // centerX, centerY, CenterZ (Titik Pusat Yang Dilihat Kamera)
               0.0, 1.0, 0.0);                           // Vektor Atas
 
